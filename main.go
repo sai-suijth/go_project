@@ -37,7 +37,7 @@ func getAlbumById(c *gin.Context) {
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Record not found"})
 }
 
-func deleteById(c *gin.Context) {
+func deleteByTitle(c *gin.Context) {
 	name := c.Param("name")
 	//fmt.Println(title)
 	for i := 0; i < len(albums); i += 1 {
@@ -61,6 +61,6 @@ func main() {
 	router.GET("/albums", getAlbums)
 	router.POST("/add", addAlbum)
 	router.GET("/getAlbumById/:id", getAlbumById)
-	router.DELETE("/deleteById/:name", deleteById)
+	router.DELETE("/deleteByTitle/:name", deleteByTitle)
 	router.Run("localhost:8081")
 }
