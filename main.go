@@ -38,10 +38,10 @@ func getAlbumById(c *gin.Context) {
 }
 
 func deleteByTitle(c *gin.Context) {
-	name := c.Param("name")
+	title := c.Param("title")
 	//fmt.Println(title)
 	for i := 0; i < len(albums); i += 1 {
-		if albums[i].Title == name {
+		if albums[i].Title == title {
 			albums = append(albums[:i], albums[i+1:]...)
 			c.IndentedJSON(http.StatusAccepted, albums)
 			return
@@ -61,6 +61,6 @@ func main() {
 	router.GET("/albums", getAlbums)
 	router.POST("/add", addAlbum)
 	router.GET("/getAlbumById/:id", getAlbumById)
-	router.DELETE("/deleteByTitle/:name", deleteByTitle)
+	router.DELETE("/deleteByTitle/:title", deleteByTitle)
 	router.Run("localhost:8081")
 }
